@@ -1,0 +1,58 @@
+# Contextualización del proyecto
+
+## Marketplace Multivendedor para el sector Retail/E-commerce
+
+El comercio electrónico ha transformado la manera en que las empresas y los consumidores realizan procesos de compra y venta, permitiendo que diferentes tipos de productos y servicios sean ofrecidos a través de plataformas digitales. Dentro de este contexto, los modelos de **marketplace multivendedor** permiten integrar múltiples vendedores en una misma plataforma, facilitando la publicación de productos, la gestión de inventarios, el procesamiento de pedidos y la interacción con los clientes.
+
+El presente proyecto propone el diseño y desarrollo progresivo de un **Marketplace Multivendedor orientado al sector Retail/E-commerce**, en el cual diferentes vendedores podrán gestionar sus productos y los clientes podrán consultar un catálogo, realizar compras, gestionar sus pedidos y valorar los productos adquiridos.
+
+El sistema estará compuesto inicialmente por funcionalidades relacionadas con la **gestión de usuarios y vendedores, catálogo de productos, inventario, pedidos y envíos**. Posteriormente, el proyecto podrá evolucionar mediante la incorporación de funcionalidades como **sistemas de reputación y reseñas, integración con diferentes medios o pasarelas de pago, manejo de diferentes monedas y un sistema de recomendaciones personalizadas basado en técnicas de Machine Learning**.
+
+### Desarrollo progresivo
+
+El proyecto será desarrollado bajo un enfoque progresivo, permitiendo que el sistema evolucione mediante diferentes etapas o iteraciones. En cada etapa se incorporarán nuevas funcionalidades y se realizarán mejoras sobre la arquitectura y el código existente.
+
+Uno de los principales objetivos académicos del proyecto será utilizar el desarrollo del Marketplace como un escenario práctico para la aplicación de los **patrones de diseño de software estudiados durante el curso**. Los patrones serán incorporados de acuerdo con las necesidades que surjan durante la evolución del sistema, evitando utilizarlos únicamente como elementos teóricos o de manera artificial.
+
+De esta manera, cada nueva funcionalidad permitirá analizar los problemas de diseño que se presenten y determinar qué patrón o combinación de patrones puede contribuir a obtener una solución más organizada, mantenible, reutilizable y escalable.
+
+Por ejemplo, a medida que el sistema incorpore diferentes formas de pago, tipos de usuarios, mecanismos de notificación, procesos de creación de pedidos o estrategias de recomendación, se podrán identificar situaciones en las que la aplicación de determinados patrones de diseño permita reducir el acoplamiento y mejorar la flexibilidad del software.
+
+### Propósito académico
+
+Además de construir una aplicación funcional, el proyecto busca fortalecer las competencias relacionadas con el **análisis, diseño, implementación, refactorización y mantenimiento de software**. El repositorio Git permitirá llevar un seguimiento de la evolución del proyecto, documentando los cambios realizados durante cada etapa y evidenciando la aplicación progresiva de los conceptos estudiados.
+
+El desarrollo permitirá relacionar los conceptos teóricos de ingeniería de software con situaciones prácticas, identificando problemas de diseño dentro de una aplicación realista y aplicando soluciones basadas en patrones de diseño.
+
+Por lo tanto, el Marketplace Multivendedor funcionará tanto como una solución tecnológica para un escenario de comercio electrónico como un **proyecto académico evolutivo**, en el que la arquitectura y el código podrán ser mejorados progresivamente a medida que aumente la complejidad del sistema.
+
+### Alcance inicial
+
+La primera etapa del proyecto estará orientada a construir una versión funcional básica del Marketplace que permita establecer las bases sobre las cuales se desarrollarán las siguientes iteraciones.
+
+Como mínimo, esta primera etapa contemplará:
+
+* Gestión de usuarios.
+* Gestión de vendedores.
+* Registro y administración de productos.
+* Consulta del catálogo.
+* Gestión básica del inventario.
+* Carrito de compras.
+* Creación y gestión de pedidos.
+* Gestión básica de estados de los pedidos.
+
+A partir de esta base, el proyecto podrá extenderse progresivamente con funcionalidades de mayor complejidad, como reputación y reseñas, múltiples métodos de pago, manejo de monedas, gestión avanzada de envíos y recomendaciones personalizadas mediante Machine Learning.
+
+### Enfoque de arquitectura y diseño
+
+La arquitectura del sistema se definirá buscando mantener una adecuada separación de responsabilidades entre sus diferentes componentes. Durante el desarrollo se evaluarán las necesidades de diseño que surjan en cada iteración y se aplicarán los patrones de diseño correspondientes cuando estos aporten una solución al problema identificado.
+
+El uso de patrones será documentado dentro del repositorio, indicando el problema encontrado, la solución implementada, el patrón utilizado y las ventajas obtenidas después de su aplicación.
+
+De esta manera, el proyecto permitirá evidenciar no solamente el resultado final de la aplicación, sino también el **proceso de evolución del diseño del software**, mostrando cómo las decisiones arquitectónicas y los patrones de diseño contribuyen a mejorar la calidad del sistema a medida que este crece.
+
+## Resultado esperado
+
+Al finalizar el proyecto se espera contar con un Marketplace Multivendedor funcional, estructurado de manera modular y con capacidad de evolución, acompañado de la documentación técnica correspondiente y del historial de desarrollo registrado en el repositorio Git.
+
+El resultado final deberá demostrar la aplicación práctica de los patrones de diseño estudiados durante el curso, así como la capacidad para identificar problemas de diseño, seleccionar soluciones apropiadas, implementarlas y evaluar su impacto sobre características como la mantenibilidad, reutilización, flexibilidad y escalabilidad del software.
