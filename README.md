@@ -93,6 +93,8 @@ Cuando se detecta una situación de riesgo, la operación puede ser bloqueada y 
 | **Login / Registro** | Utiliza el servicio único de autenticación                           |
 | **Cumplimiento**     | Utiliza el servicio único de KYC/AML                                 |
 
+<img width="1536" height="1024" alt="ChatGPT Image 12 sept 2026, 01_16_44 p m" src="https://github.com/user-attachments/assets/9dd8b8bb-fe59-469a-8cba-ccca03827132" />
+
 ---
 
 # Semana 2 — Factory Method
