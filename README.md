@@ -156,6 +156,8 @@ La fábrica base se encarga de los pasos comunes, como:
 | ----------- | ---------------------------------------------------------------------------------- |
 | **Cuentas** | Al seleccionar Ahorro, Corriente o Inversión se utiliza la fábrica correspondiente |
 
+<img width="1536" height="1024" alt="ChatGPT Image 12 sept 2026, 01_16_44 p m" src="https://github.com/user-attachments/assets/6753fba7-19db-442b-a293-5ea5f6f0d1de" />
+
 ---
 
 # Semana 3 — Abstract Factory
