@@ -287,6 +287,8 @@ Finalmente, el préstamo construido puede ser almacenado en el sistema.
 | Director | `InversionDirector` |
 | Archivo  | `builders.py`       |
 
+<img width="1535" height="1024" alt="ChatGPT Image 12 sept 2026, 01_35_52 p m" src="https://github.com/user-attachments/assets/353a3538-d8a5-4217-bc0a-5b2498c4723f" />
+
 ---
 
 ## ⚙️ Funcionamiento
