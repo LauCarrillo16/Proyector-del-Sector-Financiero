@@ -221,6 +221,8 @@ Por ejemplo, una operación realizada desde un cajero no debería generar una no
 | **Transacciones** | Al seleccionar Web, Móvil, Cajero o Sucursal se crea la familia correspondiente |
 | **Cuentas**       | La apertura de una cuenta puede quedar asociada al canal seleccionado           |
 
+<img width="1536" height="1024" alt="ChatGPT Image 12 sept 2026, 01_22_09 p m" src="https://github.com/user-attachments/assets/2c814ff3-abf8-40c1-b6f3-c20cd072eceb" />
+
 ---
 
 # Semana 4 — Builder
