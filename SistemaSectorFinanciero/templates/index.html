@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block titulo %}Dashboard{% endblock %}
+{% block contenido %}
+
+<h1>Dashboard del banco</h1>
+<p class="intro">
+  {% if session.get('rol') == 'ADMIN' %}
+    Vista global de <strong>administrador</strong>: observas toda la operación del banco.
+  {% else %}
+    Hola, <strong>{{ session.get('nombre') }}</strong>. Esta vista refleja <strong>tu cartera</strong>:
+    solo tus cuentas, transacciones, préstamos, inversiones y alertas.
+  {% endif %}
+  Desde aquí supervisas clientes, cuentas, movimientos, préstamos, inversiones y alertas de fraude.
+</p>
+
+<div class="tarjetas">
+  <div class="tarjeta"><span class="numero">{{ datos.total_clientes }}</span><span>Clientes</span></div>
+  <div class="tarjeta"><span class="numero">{{ datos.total_cuentas }}</span><span>Cuentas</span></div>
+  <div class="tarjeta"><span class="numero">{{ "%.2f"|format(datos.saldo_total) }}</span><span>Saldo total ({{ config.moneda() }})</span></div>
+  <div class="tarjeta"><span class="numero">{{ datos.transacciones }}</span><span>Transacciones</span></div>
+  <div class="tarjeta alerta"><span class="numero">{{ datos.alertas_pendientes }}</span><span>Alertas de fraude pendientes</span></div>
+</div>
+
+<h2>Alertas de fraude recientes (tiempo real)</h2>
+<table class="tabla">
+  <tr><th>ID</th><th>Motivo</th><th>Nivel</th><th>Fecha</th><th>Estado</th></tr>
+  {% for a in datos.alertas %}
+    <tr>
+      <td>{{ a.id }}</td>
+      <td>{{ a.motivo }}</td>
+      <td><span class="nivel nivel-{{ a.nivel }}">{{ a.nivel }}</span></td>
+      <td>{{ a.fecha }}</td>
+      <td>{{ a.estado }}</td>
+    </tr>
+  {% else %}
+    <tr><td colspan="5">Sin alertas de fraude.</td></tr>
+  {% endfor %}
+</table>
+
+<h2>Últimos préstamos</h2>
+<table class="tabla">
+  <tr><th>Tipo</th><th>Monto</th><th>Plazo</th><th>Tasa</th><th>Cuota mensual</th></tr>
+  {% for p in datos.prestamos[:5] %}
+    <tr>
+      <td>{{ p.tipo }}</td>
+      <td>{{ "%.2f"|format(p.monto) }}</td>
+      <td>{{ p.plazo_meses }} m</td>
+      <td>{{ "%.1f"|format(p.tasa * 100) }}%</td>
+      <td>{{ "%.2f"|format(p.cuota) }}</td>
+    </tr>
+  {% else %}
+    <tr><td colspan="5">Aún no hay prestamos.</td></tr>
+  {% endfor %}
+</table>
+
+<h2>Últimas inversiones</h2>
+<table class="tabla">
+  <tr><th>Inversor</th><th>Tipo</th><th>Monto</th><th>Perfil</th><th>Rentabilidad estim.</th></tr>
+  {% for i in datos.inversiones[:5] %}
+    <tr>
+      <td>{{ i.nombre_inversor }}</td>
+      <td>{{ i.tipo }}</td>
+      <td>{{ "%.2f"|format(i.monto) }}</td>
+      <td>{{ i.perfil }}</td>
+      <td>{{ "%.2f"|format(i.monto * i.tasa * i.plazo_meses / 12) }}</td>
+    </tr>
+  {% else %}
+    <tr><td colspan="5">Aún no hay inversiones.</td></tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

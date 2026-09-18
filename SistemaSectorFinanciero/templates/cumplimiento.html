@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Cumplimiento{% endblock %}
+{% block contenido %}
+
+<h1>Cumplimiento regulatorio &mdash; KYC / AML</h1>
+<p class="intro">
+  Políticas de cumplimiento: <strong>KYC</strong> evalúa la identidad del cliente al momento
+  de registrarlo. <strong>AML</strong> calcula el riesgo (BAJO / MEDIO / ALTO) según los
+  movimientos y el nivel de verificación. El servicio es central y se aplica igual en todos
+  los canales.
+</p>
+
+<form method="post" class="form-inline">
+  <button type="submit">Recalcular riesgo AML de todos los clientes</button>
+</form>
+
+<table class="tabla">
+  <tr><th>Nombre</th><th>Identificacion</th><th>Ocupacion</th><th>KYC</th><th>Riesgo AML</th></tr>
+  {% for c in clientes %}
+    <tr>
+      <td>{{ c.nombre }}</td>
+      <td>{{ c.identificacion }}</td>
+      <td>{{ c.ocupacion }}</td>
+      <td>{{ c.kyc_nivel }}</td>
+      <td><span class="nivel nivel-{{ c.aml_riesgo }}">{{ c.aml_riesgo }}</span></td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

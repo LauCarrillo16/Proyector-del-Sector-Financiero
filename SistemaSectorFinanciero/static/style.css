@@ -1,0 +1,178 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f2f5f9;
+  color: #22303e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+  background: linear-gradient(135deg, #0b3b5c, #14567a);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cabecera .logo { display: flex; align-items: center; gap: 12px; }
+.logo-circulo {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: #f5a623; color: #0b3b5c;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px;
+}
+.cabecera small { display: block; opacity: .85; }
+.semana-chip {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 6px 12px; border-radius: 20px; font-size: 12px;
+}
+
+/* ---------- Navegacion ---------- */
+.nav {
+  background: #fff;
+  display: flex; flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  position: sticky; top: 0; z-index: 10;
+}
+.nav a {
+  flex: 1 0 auto; text-align: center;
+  padding: 12px 14px; color: #14567a;
+  text-decoration: none; font-weight: 600; font-size: 14px;
+  border-bottom: 3px solid transparent;
+}
+.nav a:hover { background: #eef6fc; border-bottom-color: #f5a623; }
+
+/* ---------- Contenido ---------- */
+.contenido { flex: 1; padding: 22px 26px; max-width: 1200px; margin: 0 auto; width: 100%; }
+h1 { color: #0b3b5c; margin-bottom: 6px; }
+h2 { color: #0b3b5c; margin: 22px 0 10px; font-size: 17px; }
+.intro { color: #556; margin-bottom: 16px; line-height: 1.5; }
+
+.flash {
+  padding: 10px 14px; border-radius: 8px; margin-bottom: 14px;
+  font-weight: 600;
+}
+.flash-ok { background: #e4f6e9; color: #1d7a3d; border: 1px solid #b7e4c5; }
+.flash-error { background: #fdecec; color: #a12424; border: 1px solid #f3c1c1; }
+
+/* ---------- Tarjetas dashboard ---------- */
+.tarjetas {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px; margin: 16px 0 8px;
+}
+.tarjeta {
+  background: #fff; border-radius: 12px; padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  display: flex; flex-direction: column; gap: 6px;
+  border-left: 5px solid #14567a;
+}
+.tarjeta.alerta { border-left-color: #c0392b; }
+.tarjeta .numero { font-size: 26px; font-weight: 800; color: #0b3b5c; }
+.tarjeta.alerta .numero { color: #c0392b; }
+
+/* ---------- Grid y paneles ---------- */
+.grid-dos {
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 18px; align-items: start;
+}
+@media (max-width: 900px) { .grid-dos { grid-template-columns: 1fr; } }
+.panel {
+  background: #fff; border-radius: 12px; padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+/* ---------- Formularios ---------- */
+form { display: flex; flex-direction: column; gap: 10px; }
+label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 13px; }
+input, select {
+  padding: 9px 10px; border: 1px solid #cbd6e0; border-radius: 8px;
+  font-size: 14px; background: #fbfdff;
+}
+button {
+  background: #14567a; color: #fff; border: none;
+  padding: 10px 14px; border-radius: 8px; cursor: pointer;
+  font-weight: 700; font-size: 14px;
+}
+button:hover { background: #0b3b5c; }
+.form-inline { display: inline-flex; flex-direction: row; margin-bottom: 12px; }
+.btn-mini { padding: 6px 10px; font-size: 12px; }
+
+/* ---------- Tablas ---------- */
+.tabla {
+  width: 100%; border-collapse: collapse; background: #fff;
+  border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.tabla th {
+  background: #14567a; color: #fff; text-align: left;
+  padding: 10px 12px; font-size: 13px;
+}
+.tabla td { padding: 9px 12px; border-bottom: 1px solid #eef2f6; font-size: 13px; }
+.tabla tr:hover td { background: #f7fbfe; }
+
+/* ---------- Niveles ---------- */
+.nivel {
+  display: inline-block; padding: 3px 9px; border-radius: 20px;
+  color: #fff; font-size: 11px; font-weight: 700;
+}
+.nivel-BAJO { background: #2e8b57; }
+.nivel-MEDIO { background: #e6a817; }
+.nivel-ALTO { background: #c0392b; }
+.nivel-CRITICO { background: #7d0a0a; }
+.nivel-APROBADA { background: #2e8b57; }
+
+/* ---------- Notas ---------- */
+.nota {
+  margin-top: 18px; padding: 12px 14px; background: #eaf2fa;
+  border-radius: 8px; border: 1px solid #cfe0ef; font-size: 13px;
+}
+.nota code { background: #dbe9f5; padding: 2px 5px; border-radius: 4px; }
+
+.pie {
+  text-align: center; padding: 14px; color: #667;
+  background: #fff; border-top: 1px solid #e3e9ef; font-size: 12px;
+}
+
+/* ---------- Sesion / roles ---------- */
+.cabecera-derecha { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.usuario-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.15); padding: 6px 12px;
+  border-radius: 20px; font-size: 13px;
+}
+.rol-badge {
+  padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 800;
+}
+.rol-ADMIN { background: #f5a623; color: #0b3b5c; }
+.rol-CLIENTE { background: #2e8b57; color: #fff; }
+.btn-enlace {
+  color: #fff; text-decoration: none; font-weight: 600; font-size: 13px;
+  padding: 7px 12px; border: 1px solid rgba(255,255,255,.4); border-radius: 8px;
+}
+.btn-enlace:hover { background: rgba(255,255,255,.15); }
+
+/* ---------- Autenticacion ---------- */
+.centro-auth {
+  display: flex; justify-content: center; padding: 24px 0;
+}
+.auth-panel { max-width: 420px; width: 100%; }
+.auth-panel.amplio { max-width: 520px; }
+.auth-panel h1 { font-size: 22px; }
+.auth-panel h2 { margin: 14px 0 6px; font-size: 15px; }
+.auth-links { margin-top: 14px; text-align: center; font-size: 13px; }
+.auth-links a { color: #14567a; font-weight: 700; }
+
+/* ---------- Panel admin ---------- */
+.form-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  align-items: end; gap: 10px;
+}
+.form-grid-boton { display: flex; }
+.form-grid-boton button { flex: 1; }
+.form-inline { flex-direction: row; align-items: center; gap: 6px; display: flex; }

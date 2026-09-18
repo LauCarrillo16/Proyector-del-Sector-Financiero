@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block titulo %}Inversiones{% endblock %}
+{% block contenido %}
+
+<h1>Inversiones</h1>
+<p class="intro">
+  Crea inversiones según el perfil de riesgo del cliente (Conservador, Moderado o Agresivo).
+  El sistema registra la tasa, el plazo y calcula la rentabilidad estimada.
+</p>
+
+<div class="grid-dos">
+  <div class="panel">
+    <h2>Nueva inversion</h2>
+    <form method="post">
+      {% if session.get('rol') == 'ADMIN' %}
+        <label>Cliente (inversor)
+          <select name="cliente_id" required>
+            {% for c in clientes %}<option value="{{ c.id }}">{{ c.nombre }}</option>{% endfor %}
+          </select>
+        </label>
+      {% else %}
+        <input type="hidden" name="cliente_id" value="{{ session.get('cliente_id') }}">
+        <label>Cliente (inversor) <input value="{{ session.get('nombre') }}" disabled></label>
+      {% endif %}
+      <label>Perfil de riesgo
+        <select name="perfil">
+          {% for per in perfiles %}<option value="{{ per }}">{{ per }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Monto <input type="number" step="0.01" name="monto" required></label>
+      <label>Plazo (meses) <input type="number" name="plazo" value="12"></label>
+      <button type="submit">Registrar inversion</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h2>Portafolio</h2>
+    <table class="tabla">
+      <tr><th>Inversor</th><th>Tipo</th><th>Monto</th><th>Tasa</th><th>Perfil</th><th>Rentabilidad estim.</th></tr>
+      {% for i in inversiones %}
+        <tr>
+          <td>{{ i.nombre_inversor }}</td>
+          <td>{{ i.tipo }}</td>
+          <td>{{ "%.2f"|format(i.monto) }}</td>
+          <td>{{ "%.1f"|format(i.tasa * 100) }}%</td>
+          <td>{{ i.perfil }}</td>
+          <td>{{ "%.2f"|format(i.monto * i.tasa * i.plazo_meses / 12) }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

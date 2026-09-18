@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block titulo %}Cuentas{% endblock %}
+{% block contenido %}
+
+<h1>Cuentas</h1>
+<p class="intro">
+  Abre nuevas cuentas bancarias de tipo Ahorro, Corriente o de Inversión. El sistema
+  genera automáticamente el número de cuenta y registra el canal de apertura.
+</p>
+
+<div class="grid-dos">
+  <div class="panel">
+    <h2>Nueva cuenta</h2>
+    <form method="post">
+      {% if session.get('rol') == 'ADMIN' %}
+        <label>Cliente
+          <select name="cliente_id" required>
+            {% for c in clientes %}
+              <option value="{{ c.id }}">{{ c.nombre }} ({{ c.identificacion }})</option>
+            {% endfor %}
+          </select>
+        </label>
+      {% else %}
+        <input type="hidden" name="cliente_id" value="{{ session.get('cliente_id') }}">
+        <label>Cliente <input value="{{ session.get('nombre') }}" disabled></label>
+      {% endif %}
+      <label>Tipo de cuenta
+        <select name="tipo">
+          {% for t in tipos %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Saldo inicial <input type="number" step="0.01" name="saldo" value="0"></label>
+      <label>Canal de apertura
+        <select name="canal">
+          {% for c in canales %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+        </select>
+      </label>
+      <button type="submit">Crear cuenta</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h2>Cuentas registradas</h2>
+    <table class="tabla">
+      <tr><th>Numero</th><th>Tipo</th><th>Cliente</th><th>Saldo</th><th>Canal</th></tr>
+      {% for cta in cuentas %}
+        <tr>
+          <td>{{ cta.numero }}</td>
+          <td>{{ cta.tipo }}</td>
+          <td>{{ cta.nombre_cliente }}</td>
+          <td>{{ "%.2f"|format(cta.saldo) }}</td>
+          <td>{{ cta.canal }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

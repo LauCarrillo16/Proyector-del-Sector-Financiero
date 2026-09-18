@@ -1,0 +1,11 @@
+{
+  "banco": "Banco Andino S.A.",
+  "moneda": "PEN",
+  "db_file": "banco.db",
+  "canales": ["WEB", "MOVIL", "CAJERO", "SUCURSAL"],
+  "limite_deposito": 8000,
+  "limite_retiro": 5000,
+  "limite_transferencia": 10000,
+  "monto_gran_operacion": 20000,
+  "tasa_riesgo": 0.35
+}

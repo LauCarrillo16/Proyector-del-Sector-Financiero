@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block titulo %}Registrarse{% endblock %}
+{% block contenido %}
+
+<div class="centro-auth">
+  <div class="panel auth-panel amplio">
+    <h1>Apertura de cuenta de cliente</h1>
+    <p class="intro">
+      Al registrarte se crea tu <strong>ficha financiera</strong> (con evaluación
+      <strong>KYC/AML</strong>) y tu <strong>usuario</strong> con rol CLIENTE.
+      Con él entrarás y operarás tu propia cartera.
+    </p>
+
+    <form method="post">
+      <h2>Datos personales</h2>
+      <label>Nombre completo <input name="nombre" required></label>
+      <label>Identificacion (DNI-xxxx o PAS-xxxx) <input name="identificacion" required></label>
+      <label>Email <input type="email" name="email"></label>
+      <label>Teléfono <input name="telefono"></label>
+      <label>Ocupacion <input name="ocupacion"></label>
+
+      <h2>Credenciales de acceso</h2>
+      <label>Nombre de usuario <input name="username" required></label>
+      <label>Contraseña <input type="password" name="password" minlength="4" required></label>
+
+      <button type="submit">Registrarme</button>
+    </form>
+
+    <p class="auth-links">¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+  </div>
+</div>
+
+{% endblock %}

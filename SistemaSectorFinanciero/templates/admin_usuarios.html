@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block titulo %}Panel admin{% endblock %}
+{% block contenido %}
+
+<h1>Panel del administrador &mdash; Usuarios del sistema</h1>
+<p class="intro">
+  Como <strong>ADMIN</strong> puedes crear usuarios, asignar roles (ADMIN / CLIENTE)
+  y activar o desactivar cuentas. Un CLIENTE desactivado no podrá iniciar sesión.
+</p>
+
+<div class="panel">
+  <h2>Crear usuario</h2>
+  <form method="post" class="form-grid">
+    <input type="hidden" name="accion" value="crear">
+    <label>Usuario <input name="username" required></label>
+    <label>Contraseña <input type="password" name="password" required></label>
+    <label>Rol
+      <select name="rol">
+        <option value="CLIENTE">CLIENTE</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>
+    </label>
+    <label>Vincular a ficha (opcional)
+      <select name="cliente_id">
+        <option value="">-- sin ficha --</option>
+        {% for c in clientes %}
+          <option value="{{ c.id }}">{{ c.nombre }} ({{ c.identificacion }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <div class="form-grid-boton"><button type="submit">Crear usuario</button></div>
+  </form>
+</div>
+
+<table class="tabla">
+  <tr>
+    <th>ID</th><th>Usuario</th><th>Ficha vinculada</th><th>Rol</th>
+    <th>Estado</th><th>Acciones</th>
+  </tr>
+  {% for u in usuarios %}
+    <tr>
+      <td>{{ u.id }}</td>
+      <td>{{ u.username }}</td>
+      <td>{{ u.nombre_cliente or '--' }}</td>
+      <td>
+        <form method="post" class="form-inline">
+          <input type="hidden" name="accion" value="rol">
+          <input type="hidden" name="usuario_id" value="{{ u.id }}">
+          <select name="rol">
+            <option value="CLIENTE" {% if u.rol == 'CLIENTE' %}selected{% endif %}>CLIENTE</option>
+            <option value="ADMIN" {% if u.rol == 'ADMIN' %}selected{% endif %}>ADMIN</option>
+          </select>
+          <button class="btn-mini" type="submit">Cambiar rol</button>
+        </form>
+      </td>
+      <td>
+        <span class="nivel nivel-{{ 'BAJO' if u.activo else 'ALTO' }}">
+          {{ 'ACTIVO' if u.activo else 'DESACTIVADO' }}
+        </span>
+      </td>
+      <td>
+        {% if u.id != session.get('usuario_id') %}
+          <form method="post" class="form-inline">
+            <input type="hidden" name="accion" value="estado">
+            <input type="hidden" name="usuario_id" value="{{ u.id }}">
+            <input type="hidden" name="activo" value="{{ 0 if u.activo else 1 }}">
+            <button class="btn-mini" type="submit">
+              {{ 'Desactivar' if u.activo else 'Activar' }}
+            </button>
+          </form>
+        {% else %}
+          <small>(tu cuenta)</small>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

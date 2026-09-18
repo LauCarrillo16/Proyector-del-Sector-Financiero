@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Sistema Bancario{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="logo">
+      <span class="logo-circulo">B</span>
+      <div>
+        <strong>{{ config.banco() }}</strong>
+        <small>Core bancario &middot; Gestión financiera en línea</small>
+      </div>
+    </div>
+    <div class="cabecera-derecha">
+      {% if session.get('usuario_id') %}
+        <div class="usuario-chip">
+          <strong>{{ session.get('nombre') }}</strong>
+          <span class="rol-badge rol-{{ session.get('rol') }}">{{ session.get('rol') }}</span>
+        </div>
+        <a class="btn-enlace" href="{{ url_for('logout') }}">Cerrar sesión</a>
+      {% else %}
+        <a class="btn-enlace" href="{{ url_for('login') }}">Iniciar sesión</a>
+        <a class="btn-enlace" href="{{ url_for('registro') }}">Registrarse</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <nav class="nav">
+    {% if session.get('usuario_id') %}
+      <a href="{{ url_for('inicio') }}">Dashboard</a>
+      <a href="{{ url_for('clientes') }}">Mi ficha</a>
+      <a href="{{ url_for('cuentas') }}">Cuentas</a>
+      <a href="{{ url_for('transacciones') }}">Transacciones</a>
+      <a href="{{ url_for('prestamos') }}">Prestamos</a>
+      <a href="{{ url_for('inversiones') }}">Inversiones</a>
+      <a href="{{ url_for('fraude') }}">Fraude</a>
+      {% if session.get('rol') == 'ADMIN' %}
+        <a href="{{ url_for('cumplimiento') }}">Cumplimiento</a>
+        <a href="{{ url_for('panel_admin') }}">Panel admin</a>
+      {% endif %}
+    {% endif %}
+  </nav>
+
+  <main class="contenido">
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% for categoria, mensaje in mensajes %}
+        <div class="flash flash-{{ categoria }}">{{ mensaje }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <footer class="pie">
+    <small>Sistema bancario core: cuentas, transacciones, préstamos, inversiones,
+    múltiples canales, fraude en tiempo real y cumplimiento KYC/AML.</small>
+  </footer>
+</body>
+</html>

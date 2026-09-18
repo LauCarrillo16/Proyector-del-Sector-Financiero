@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block titulo %}Transacciones{% endblock %}
+{% block contenido %}
+
+<h1>Transacciones</h1>
+<p class="intro">
+  Registra depósitos, retiros y transferencias desde cualquier canal (Web, Móvil, Cajero o Sucursal).
+  Cada operación se supervisa en <strong>tiempo real</strong> por el motor de fraude: si supera los
+  límites o presenta anomalías, se bloquea y se genera una alerta.
+</p>
+
+<div class="grid-dos">
+  <div class="panel">
+    <h2>Nueva operacion</h2>
+    <form method="post">
+      <label>Cuenta origen
+        <select name="numero_cuenta" required>
+          {% for cta in cuentas %}
+            <option value="{{ cta.numero }}">{{ cta.numero }} ({{ cta.tipo }})</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Tipo de operacion
+        <select name="tipo">
+          {% for t in tipos %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Monto <input type="number" step="0.01" name="monto" required></label>
+      <label>Cuenta destino (solo transferencias) <input name="cuenta_destino"></label>
+      <label>Canal
+        <select name="canal">
+          {% for c in canales %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+        </select>
+      </label>
+      <button type="submit">Procesar operacion</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h2>Historial</h2>
+    <table class="tabla">
+      <tr><th>Cuenta</th><th>Tipo</th><th>Monto</th><th>Destino</th><th>Canal</th><th>Estado</th></tr>
+      {% for t in transacciones[:8] %}
+        <tr>
+          <td>{{ t.numero_cuenta }}</td>
+          <td>{{ t.tipo }}</td>
+          <td>{{ "%.2f"|format(t.monto) }}</td>
+          <td>{{ t.cuenta_destino }}</td>
+          <td>{{ t.canal }}</td>
+          <td><span class="nivel nivel-{{ 'BAJO' if t.estado == 'APROBADA' else 'ALTO' }}">{{ t.estado }}</span></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

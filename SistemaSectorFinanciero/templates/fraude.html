@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %}Fraude{% endblock %}
+{% block contenido %}
+
+<h1>Detección de fraude en tiempo real</h1>
+<p class="intro">
+  El motor de fraude supervisa cada operación al momento. Las alertas se generan cuando una
+  operación supera los límites, el destino es inválido o un cliente de riesgo AML alto opera
+  en montos grandes. Aquí puedes marcar las alertas como revisadas.
+</p>
+
+<table class="tabla">
+  <tr><th>ID</th><th>Motivo</th><th>Nivel</th><th>Fecha</th><th>Estado</th><th></th></tr>
+  {% for a in alertas %}
+    <tr>
+      <td>{{ a.id }}</td>
+      <td>{{ a.motivo }}</td>
+      <td><span class="nivel nivel-{{ a.nivel }}">{{ a.nivel }}</span></td>
+      <td>{{ a.fecha }}</td>
+      <td>{{ a.estado }}</td>
+      <td>
+        {% if a.estado == 'NO_REVISADA' %}
+          <form method="post" class="form-inline">
+            <input type="hidden" name="alerta_id" value="{{ a.id }}">
+            <button class="btn-mini" type="submit">Marcar revisada</button>
+          </form>
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="6">No hay alertas de fraude.</td></tr>
+  {% endfor %}
+</table>
+
+<div class="nota">
+  <strong>Prueba sugerida:</strong> en la pestaña <em>Transacciones</em> retira más de
+  5,000 (limite de retiro) o transfiere a una cuenta inexistente; el motor creara una
+  alerta aqui inmediatamente.
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Clientes{% endblock %}
+{% block contenido %}
+
+<h1>Ficha financiera del cliente</h1>
+<p class="intro">
+  {% if session.get('rol') == 'ADMIN' %}
+    Vista completa de todos los clientes del banco.
+  {% else %}
+    Esta es tu ficha registrada con evaluacion <strong>KYC</strong>. El nivel de riesgo
+    <strong>AML</strong> de tu ficha influye en la supervision del detector de fraude.
+  {% endif %}
+  Al registrar una ficha se aplica <strong>KYC</strong> (Know Your Customer) de forma automatica.
+  Los clientes con riesgo <strong>AML = ALTO</strong> son vigilados con más estrictez por el detector
+  de fraude.
+</p>
+
+<div class="panel">
+  <h2>
+    {% if session.get('rol') == 'ADMIN' %}Clientes del sistema{% else %}Mi ficha{% endif %}
+  </h2>
+    <table class="tabla">
+      <tr><th>Nombre</th><th>Identificacion</th><th>KYC</th><th>AML</th></tr>
+      {% for c in clientes %}
+        <tr>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.identificacion }}</td>
+          <td>{{ c.kyc_nivel }}</td>
+          <td><span class="nivel nivel-{{ c.aml_riesgo }}">{{ c.aml_riesgo }}</span></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+{% endblock %}

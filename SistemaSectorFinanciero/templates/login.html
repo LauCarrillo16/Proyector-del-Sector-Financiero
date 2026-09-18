@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block titulo %}Iniciar sesión{% endblock %}
+{% block contenido %}
+
+<div class="centro-auth">
+  <div class="panel auth-panel">
+    <h1>Acceso al sistema financiero</h1>
+    <p class="intro">Inicia sesión con tu usuario. Según tu rol verás la vista de
+      <strong>administrador</strong> (gestion global) o de <strong>cliente</strong> (tu cartera).</p>
+
+    <form method="post">
+      <label>Usuario <input name="username" required autofocus></label>
+      <label>Contraseña <input type="password" name="password" required></label>
+      <input type="hidden" name="siguiente" value="{{ siguiente }}">
+      <button type="submit">Entrar</button>
+    </form>
+
+    <p class="auth-links">
+      ¿Aún no tienes acceso? <a href="{{ url_for('registro') }}">Regístrate aquí</a>
+    </p>
+
+    <div class="nota">
+      <strong>Credenciales de demostración</strong><br>
+      Administrador: <code>admin / admin123</code><br>
+      Clientes de ejemplo: <code>maria / 1234</code> y <code>luis / 1234</code><br>
+      <small>(tambien puedes registrarte y crear tu propia cuenta)</small>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
